@@ -47,7 +47,7 @@ def _request_metar_data():
 
 
 def _parse_metar_data(data: str) -> dict:
-    soup = Soup(data)
+    soup = Soup(data, features="html.parser")
     data = dict()
     for ele in soup.find_all('metar'):
         station = ele.find('station_id').get_text().strip()
@@ -66,6 +66,7 @@ def pull_metar_data():
 
 
 if __name__ == '__main__':
-    print(Colors.VFR.value)
-    with open('test.data', 'r') as f:
-        print(_parse_metar_data(f.read()))
+    pull_metar_data()
+    # print(Colors.VFR.value)
+    # with open('test.data', 'r') as f:
+    #     print(_parse_metar_data(f.read()))
