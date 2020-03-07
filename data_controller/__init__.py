@@ -13,7 +13,13 @@ class Colors(Enum):
 
 stations = {
     'KBOS': 1,
-    'KATL': 0
+    'KATL': 0,
+    'KBWI': 10,
+    'KCLE': 15,
+    'KCLT': 23,
+    'KCVG': 36,
+    'CWOB': 45,
+    'CYTE': 50
 }
 
 # COLOR_VFR = (255, 0, 0)				# Green
