@@ -47,7 +47,10 @@ def _parse_metar_data(data: str) -> dict:
     soup = Soup(data)
     data = dict()
     for ele in soup.find_all('metar'):
-        data[ele.find('station_id').get_text()] = getattr(Colors, ele.find('flight_category').get_text(), Colors.COLOR_CLEAR).value
+        station = ele.find('station_id').get_text().strip()
+        flight_cat = ele.find('flight_category').get_text() if ele.find('flight_category') else 'None'
+        station_stat = getattr(Colors, flight_cat, Colors.COLOR_CLEAR)
+        data[station] = station_stat.value
     return data
 
 
