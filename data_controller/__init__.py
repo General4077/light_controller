@@ -1,6 +1,9 @@
 from requests import get
 from bs4 import BeautifulSoup as Soup
 from enum import Enum
+import logging
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger()
 
 class Colors(Enum):
     VFR = (255, 0, 0)
@@ -50,6 +53,7 @@ def _parse_metar_data(data: str) -> dict:
         station = ele.find('station_id').get_text().strip()
         flight_cat = ele.find('flight_category').get_text() if ele.find('flight_category') else 'None'
         station_stat = getattr(Colors, flight_cat, Colors.COLOR_CLEAR)
+        logger.info(f"{station}: {station_stat:>8}")
         data[station] = station_stat.value
     return data
 
