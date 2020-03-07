@@ -55,6 +55,12 @@ def _parse_metar_data(data: str) -> dict:
 
 
 
+def pull_metar_data():
+    data = _request_metar_data()
+    logger.info(data)
+    return _parse_metar_data(data)
+
+
 if __name__ == '__main__':
     print(Colors.VFR.value)
     with open('test.data', 'r') as f:
