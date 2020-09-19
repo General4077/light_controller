@@ -23,7 +23,7 @@ class RunLights:
         data = metar.pull_metar_data()
         with open(metar.station_data, 'r') as f:
             for i, station in enumerate(f.readlines()):
-                self.pixels[i] = data.get(station.strip(), Colors.COLOR_CLEAR)
+                self.pixels[i] = data.get(station.strip(), Colors.COLOR_CLEAR.value)
                 if i + 1 == TOTAL_LIGHTS:
                     break
         self.pixels.show()
