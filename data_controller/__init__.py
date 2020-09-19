@@ -10,11 +10,6 @@ class Colors(Enum):
     LIFR = (125, 0, 125)
     COLOR_CLEAR = (0, 0, 0)
 
-# COLOR_VFR = (255, 0, 0)				# Green
-# COLOR_MVFR = (0, 0, 255)				# Blue
-# COLOR_IFR = (0, 255, 0)				# Red
-# COLOR_LIFR = (0, 125, 125)			# Magenta
-
 
 class METARData:
 
@@ -66,10 +61,3 @@ class METARData:
     def pull_metar_data(self):
         data = self._request_metar_data()
         return self._parse_metar_data(data)
-
-
-if __name__ == '__main__':
-    print(METARData().url)
-    # print(Colors.VFR.value)
-    # with open('test.data', 'r') as f:
-    #     print(_parse_metar_data(f.read()))
