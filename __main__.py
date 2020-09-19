@@ -1,5 +1,7 @@
 from .pi_controller import RunLights
 
+REST_MINUTES = 10
+
 with RunLights() as control:
-    for _ in range(2):
-        control.refresh(10)
+    while True:
+        control.refresh(REST_MINUTES)

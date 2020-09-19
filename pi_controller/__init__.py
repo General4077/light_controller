@@ -27,4 +27,4 @@ class RunLights:
                 if i + 1 == TOTAL_LIGHTS:
                     break
         self.pixels.show()
-        time.sleep(interval)
+        time.sleep(interval * 60)
