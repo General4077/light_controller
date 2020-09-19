@@ -3,7 +3,7 @@ import time
 import board
 import neopixel
 
-from ..data_controller import METARData
+from ..data_controller import METARData, Colors
 
 
 TOTAL_LIGHTS = 250
@@ -23,7 +23,7 @@ class RunLights:
         data = metar.pull_metar_data()
         with open(metar.station_data, 'r') as f:
             for i, station in enumerate(f.readlines()):
-                self.pixels[i] = data.get(station.strip(), None)
+                self.pixels[i] = data.get(station.strip(), Colors.COLOR_CLEAR)
                 if i + 1 == TOTAL_LIGHTS:
                     break
         self.pixels.show()
