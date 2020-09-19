@@ -4,10 +4,10 @@ from enum import Enum
 import os
 
 class Colors(Enum):
-    VFR = (255, 0, 0)
+    VFR = (0, 255, 0)
     MVFR = (0, 0, 255)
-    IFR = (0, 255, 0)
-    LIFR = (0, 125, 125)
+    IFR = (255, 0, 0)
+    LIFR = (125, 0, 125)
     COLOR_CLEAR = (0, 0, 0)
 
 # COLOR_VFR = (255, 0, 0)				# Green
