@@ -9,6 +9,7 @@ class Colors(Enum):
     IFR = (255, 0, 0)
     LIFR = (125, 0, 125)
     COLOR_CLEAR = (0, 0, 0)
+    WHITE = (255, 255, 255) # Troubleshooting
 
 
 class METARData:
@@ -30,7 +31,6 @@ class METARData:
             'format': 'xml',
             'hoursBeforeNow': '5',
             'mostRecentForEachStation': 'true',
-            'fields': 'flight_category,station_id',
             'stationString': ' '.join(self.stations)
         }
 
