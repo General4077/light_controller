@@ -6,7 +6,7 @@ import neopixel
 from ..data_controller import METARData, Colors
 
 
-TOTAL_LIGHTS = 264
+TOTAL_LIGHTS = 300
 
 class RunLights:
     def __init__(self):
@@ -26,5 +26,9 @@ class RunLights:
                 self.pixels[i] = data.get(station.strip(), Colors.COLOR_CLEAR.value)
                 if i + 1 == TOTAL_LIGHTS:
                     break
+        self.pixels[273] = Colors.VFR.value
+        self.pixels[274] = Colors.MVFR.value
+        self.pixels[275] = Colors.IFR.value
+        self.pixels[276] = Colors.LIFR.value
         self.pixels.show()
         time.sleep(interval * 60)
