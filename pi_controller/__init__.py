@@ -3,7 +3,7 @@ import time
 import board
 import neopixel
 
-from ..data_controller import METARData, Colors
+from light_controller.data_controller import METARData, Colors
 
 
 TOTAL_LIGHTS = 300
@@ -35,3 +35,16 @@ class RunLights:
         except Exception:
             pass
         time.sleep(interval * 60)
+
+    def set_color(self, station, color=(252,111,3)):
+        metar = METARData()
+        with open(metar.station_data, 'r') as f:
+            stations = [i.strip() for i in f.readlines()]
+        print(stations)
+        try:
+            idx = stations.index(station)
+        except ValueError:
+            print(f'{station} is unknown')
+            return
+        self.pixels[idx] = color
+        self.pixels.show()
