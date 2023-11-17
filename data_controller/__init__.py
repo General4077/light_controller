@@ -2,6 +2,8 @@ from requests import get
 from bs4 import BeautifulSoup as Soup
 from enum import Enum
 import os
+from pathlib import Path
+
 
 class Colors(Enum):
     VFR = (0, 255, 0)
@@ -16,7 +18,13 @@ class METARData:
 
     @property
     def station_data(self):
-        return os.path.join('light_controller', 'stations.data')
+        p = Path('.')
+        if Path('light_controller').exists():
+            return p / 'light_controller' / 'stations.data'
+        elif Path('stations.data').exists():
+            return p / 'stations.data'
+        else:
+            raise FileNotFoundError('Could not find stations.data file')
 
     @property
     def stations(self):
