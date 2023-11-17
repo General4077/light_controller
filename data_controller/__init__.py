@@ -16,6 +16,8 @@ class Colors(Enum):
 
 class METARData:
 
+    url :str = "https://aviationweather.gov/api/data/dataserver"
+
     @property
     def station_data(self):
         p = Path('.')
@@ -38,19 +40,13 @@ class METARData:
             'requestType': 'retrieve',
             'format': 'xml',
             'hoursBeforeNow': '5',
-            'mostRecentForEachStation': 'true',
-            'stationString': ' '.join(self.stations)
+            'mostRecentForEachStation': 'constraint',
+            'stationString': ','.join(self.stations)
         }
-
-    @property
-    def url(self):
-        _url = "https://www.aviationweather.gov/adds/dataserver_current/httpparam?"
-        return _url + '&'.join([f'{k}={v}' for k, v in self.url_params.items()])
-
 
 
     def _request_metar_data(self):
-        r = get(self.url)
+        r = get(self.url, params = self.url_params.items())
         return r.content.decode('utf-8', errors='replace')
 
 
